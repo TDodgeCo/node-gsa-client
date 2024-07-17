@@ -16,14 +16,15 @@
   "keywords": [
     "gameserverapp",
     "api",
-    "client"
+    "client",
+    "gsa"
   ],
   "author": "Tim Dodge",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yourusername/gsa-client/issues"
+    "url": "https://github.com/TDodgeCo/node-gsa-client/issues"
   },
-  "homepage": "https://github.com/yourusername/gsa-client#readme",
+  "homepage": "https://github.com/TDodgeCo/node-gsa-client#readme",
   "dependencies": {
     "axios": "^1.7.2",
     "axios-cookiejar-support": "^5.0.2",

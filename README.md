@@ -1,7 +1,7 @@
 
 # GSA Client
 
-A Node.js client for the GameServerApp API. Ported from https://github.com/gameserverapp/PHP-API-Wrapper
+A Node.js client for the GameServerApp API. Includes full type support. Ported from https://github.com/gameserverapp/PHP-API-Wrapper
 
 ## Installation
 
