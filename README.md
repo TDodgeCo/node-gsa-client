@@ -8,13 +8,13 @@ A Node.js client for the GameServerApp API. Includes full type support. Ported f
 To install the package, use npm:
 
 ```bash
-npm install gsa-client
+npm install node-gsa-client
 ```
 
 Or with yarn:
 
 ```bash
-yarn add gsa-client
+yarn add node-gsa-client
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ yarn add gsa-client
 First, import the `GSAClient` class and create an instance with your `Client ID` and `Client Secret`. You can find those items on your Dashboard's API page: https://dash.gameserverapp.com/configure/api
 
 ```typescript
-import GSAClient from 'gsa-client'
+import GSAClient from 'node-gsa-client'
 
 const clientId = 'your-client-id'
 const secret = 'your-client-secret'
