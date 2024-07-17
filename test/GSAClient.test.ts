@@ -4,9 +4,9 @@ import GSAClient from '../src/GSAClient'
 
 const mock = new MockAdapter(axios)
 
-const key = 'test-key'
+const clientId = 'test-clientId'
 const secret = 'test-secret'
-const client = new GSAClient(key, secret)
+const client = new GSAClient(clientId, secret)
 
 describe('GSAClient', () => {
   afterEach(() => {
