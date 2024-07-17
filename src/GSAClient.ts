@@ -27,9 +27,15 @@ class GSAClient {
     this.cookieJar = new CookieJar()
     const httpsAgent = new https.Agent({ rejectUnauthorized: sslVerify })
 
-    this.client = process.env.NODE_ENV === 'test'
-      ? axios.create({ headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.clientId }, jar: this.cookieJar })
-      : wrapper(axios.create({ httpsAgent, headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.clientId }, jar: this.cookieJar }))
+    const axiosInstance = axios.create({
+      httpsAgent,
+      headers: { 
+        'User-Agent': 'GSA Node.js API wrapper',
+        'X-AUTH-GSA-CLIENT-ID': this.clientId
+      }
+    })
+
+    this.client = wrapper(axiosInstance)
   }
 
   public async domainSettings() {

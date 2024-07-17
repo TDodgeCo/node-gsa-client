@@ -1,6 +1,6 @@
 {
   "name": "node-gsa-client",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "description": "A Node.js client for the GameServerApp API",
   "main": "dist/GSAClient.js",
