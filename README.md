@@ -60,6 +60,17 @@ console.log(settings)
 #### `domainStat(type: string = 'hours-played')`
 
 Fetch domain statistics.
+options:
+- hours-played (graph)
+- online-players (graph)
+- new-characters (graph)
+- online-count-last-7-days (graph)
+- hours-played-last-7-days (graph)
+- new-players-last-7-days (graph)
+- active-tribes (group objects)
+- newbies (character objects)
+- top-players (character objects)
+- last-online (character object)
 
 ```typescript
 const stats = await client.domainStat('hours-played')
@@ -69,6 +80,14 @@ console.log(stats)
 #### `clusterStat(uuid: string, type: string = 'online-count-last-7-days')`
 
 Fetch cluster statistics.
+options:
+- online-count-last-7-days (graph)
+- hours-played-last-7-days (graph)
+- new-players-last-7-days (graph)
+- active-tribes (group objects)
+- newbies (character objects)
+- top-players (character objects)
+- last-online (character object)
 
 ```typescript
 const uuid = 'your-cluster-uuid'
@@ -79,6 +98,14 @@ console.log(stats)
 #### `serverStat(id: string, type: string = 'online-count-last-7-days')`
 
 Fetch server statistics.
+options:
+- online-count-last-7-days (graph)
+- hours-played-last-7-days (graph)
+- new-players-last-7-days (graph)
+- active-tribes (group objects)
+- newbies (character objects)
+- top-players (character objects)
+- last-online (character object)
 
 ```typescript
 const id = 'your-server-id'
@@ -108,6 +135,10 @@ console.log(group)
 #### `groupStat(uuid: string, type: string = 'hours-played')`
 
 Fetch group statistics.
+options:
+- hours-played
+- levels-gained
+- xp-gained
 
 ```typescript
 const uuid = 'your-group-uuid'
@@ -159,6 +190,10 @@ console.log(user)
 #### `userStat(uuid: string, type: string = 'hours-played')`
 
 Fetch user statistics.
+options:
+- hours-played
+- levels-gained
+- xp-gained
 
 ```typescript
 const uuid = 'your-user-uuid'
@@ -188,6 +223,10 @@ console.log(character)
 #### `characterStat(uuid: string, type: string = 'hours-played')`
 
 Fetch character statistics.
+options:
+- hours-played
+- levels-gained
+- xp-gained
 
 ```typescript
 const uuid = 'your-character-uuid'
