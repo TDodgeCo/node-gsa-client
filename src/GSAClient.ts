@@ -13,14 +13,14 @@ class GSAClientException extends Error {
 class GSAClient {
   private static readonly OAUTH_COOKIE_NAME = 'GSA_AUTH'
 
-  private key: string
+  private clientId: string
   private secret: string
   private url: string
   private client: AxiosInstance
   private cookieJar: CookieJar
 
-  constructor(key: string, secret: string, url: string = 'https://api.gameserverapp.com/api', sslVerify: boolean = true) {
-    this.key = key
+  constructor(clientId: string, secret: string, url: string = 'https://api.gameserverapp.com/api', sslVerify: boolean = true) {
+    this.clientId = clientId
     this.secret = secret
     this.url = url
 
@@ -28,8 +28,8 @@ class GSAClient {
     const httpsAgent = new https.Agent({ rejectUnauthorized: sslVerify })
 
     this.client = process.env.NODE_ENV === 'test'
-      ? axios.create({ headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.key }, jar: this.cookieJar })
-      : wrapper(axios.create({ httpsAgent, headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.key }, jar: this.cookieJar }))
+      ? axios.create({ headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.clientId }, jar: this.cookieJar })
+      : wrapper(axios.create({ httpsAgent, headers: { 'User-Agent': 'GSA Node.js API wrapper', 'X-AUTH-GSA-CLIENT-ID': this.clientId }, jar: this.cookieJar }))
   }
 
   public async domainSettings() {
