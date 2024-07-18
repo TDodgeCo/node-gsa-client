@@ -10,7 +10,7 @@ class GSAClientException extends Error {
   }
 }
 
-class GSAClient {
+export default class GSAClient {
   private static readonly OAUTH_COOKIE_NAME = 'GSA_AUTH'
 
   private clientId: string
@@ -147,4 +147,4 @@ class GSAClient {
   }
 }
 
-export default GSAClient
+// export default GSAClient
