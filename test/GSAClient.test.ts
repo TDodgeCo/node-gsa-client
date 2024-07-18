@@ -1,6 +1,6 @@
 import axios from 'axios'
 const MockAdapter = require('axios-mock-adapter')
-import GSAClient from '../src/index'
+import GSAClient from '../src/GSAClient'
 
 const mock = new MockAdapter(axios)
 
