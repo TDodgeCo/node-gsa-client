@@ -83,7 +83,7 @@ export default class GSAClient {
   }
 
   public async userStat(uuid: string, type: string = 'hours-played') {
-    return this.request('get', 'v1', `user/${uuid}/stat/${type}`)
+    return this.request('get', 'v1', `user/${uuid}/stats/${type}`)
   }
 
   public async users() {
