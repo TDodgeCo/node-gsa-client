@@ -195,7 +195,7 @@ describe('GSAClient', () => {
 
   test('shopItem should return a shop pack based on ID from community store', async () => {
     const response = { shopItem: 'shopItem' }
-    const uuid = test.uuid
+    const uuid = 'test-uuid'
     mock.onGet(`https://api.gameserverapp.com/api/v1/shop/${uuid}`).reply(200, response)
 
     const result = await client.shopItem(uuid)
