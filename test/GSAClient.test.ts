@@ -184,4 +184,21 @@ describe('GSAClient', () => {
     const result = await client.spotlightCharacters()
     expect(result).toEqual(response)
   })
+
+  test('shopItems should return shop packs from community store', async () => {
+    const response = { shopItems: 'shopItems' }
+    mock.onGet('https://api.gameserverapp.com/api/v1/shop').reply(200, response)
+
+    const result = await client.shopItems()
+    expect(result).toEqual(response)
+  })
+
+  test('shopItem should return a shop pack based on ID from community store', async () => {
+    const response = { shopItem: 'shopItem' }
+    const uuid = test.uuid
+    mock.onGet(`https://api.gameserverapp.com/api/v1/shop/${uuid}`).reply(200, response)
+
+    const result = await client.shopItem(uuid)
+    expect(result).toEqual(response)
+  })
 })
