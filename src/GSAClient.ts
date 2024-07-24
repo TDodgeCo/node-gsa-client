@@ -119,9 +119,17 @@ export default class GSAClient {
   }
 
   public async shopItems(route: string = '', query: any = {}) {
+    let fullRoute = 'shop';
+    if (route) {
+      fullRoute = `${fullRoute}/${route}`;
+    }
+  
     const queryString = new URLSearchParams(query).toString();
-    const fullRoute = route ? `shop/${route}` : 'shop';
-    return this.request('get', 'v1', `${fullRoute}?${queryString}`);
+    if (queryString) {
+      fullRoute = `${fullRoute}?${queryString}`;
+    }
+  
+    return this.request('get', 'v1', fullRoute);
   }
 
   public async shopItem(id: string) {

@@ -32,7 +32,7 @@ describe('GSAClient', () => {
   test('clusterStat should return cluster statistics', async () => {
     const response = { stats: 'cluster-statistics' }
     const uuid = 'test-uuid'
-    mock.onGet(`https://api.gameserverapp.com/api/v1/cluster/${uuid}/stat/online-count-last-7-days`).reply(200, response)
+    mock.onGet(`https://api.gameserverapp.com/api/v1/cluster/${uuid}/stats/online-count-last-7-days`).reply(200, response)
 
     const result = await client.clusterStat(uuid, 'online-count-last-7-days')
     expect(result).toEqual(response)
@@ -41,7 +41,7 @@ describe('GSAClient', () => {
   test('serverStat should return server statistics', async () => {
     const response = { stats: 'server-statistics' }
     const id = 'test-id'
-    mock.onGet(`https://api.gameserverapp.com/api/v1/server/${id}`).reply(200, response)
+    mock.onGet(`https://api.gameserverapp.com/api/v1/server/${id}/stats/online-count-last-7-days`).reply(200, response)
 
     const result = await client.serverStat(id, 'online-count-last-7-days')
     expect(result).toEqual(response)
@@ -113,7 +113,7 @@ describe('GSAClient', () => {
   test('userStat should return user statistics', async () => {
     const response = { stats: 'user-statistics' }
     const uuid = 'test-uuid'
-    mock.onGet(`https://api.gameserverapp.com/api/v1/user/${uuid}/stat/hours-played`).reply(200, response)
+    mock.onGet(`https://api.gameserverapp.com/api/v1/user/${uuid}/stats/hours-played`).reply(200, response)
 
     const result = await client.userStat(uuid, 'hours-played')
     expect(result).toEqual(response)
@@ -185,20 +185,32 @@ describe('GSAClient', () => {
     expect(result).toEqual(response)
   })
 
-  test('shopItems should return shop packs from community store', async () => {
-    const response = { shopItems: 'shopItems' }
+  test('shopItems should return a list of shop items', async () => {
+    const response = { items: 'list-of-shop-items' }
+    const route = 'some-route'
+    const query = { category: 'weapons' }
+  
+    mock.onGet(`https://api.gameserverapp.com/api/v1/shop/${route}?category=weapons`).reply(200, response)
+  
+    const result = await client.shopItems(route, query)
+    expect(result).toEqual(response)
+  });
+  
+  test('shopItems should return a list of shop items without route and query', async () => {
+    const response = { items: 'list-of-shop-items' }
+  
     mock.onGet('https://api.gameserverapp.com/api/v1/shop').reply(200, response)
-
+  
     const result = await client.shopItems()
     expect(result).toEqual(response)
   })
 
   test('shopItem should return a shop pack based on ID from community store', async () => {
     const response = { shopItem: 'shopItem' }
-    const uuid = 'test-uuid'
-    mock.onGet(`https://api.gameserverapp.com/api/v1/shop/${uuid}`).reply(200, response)
+    const id = 'test-id'
+    mock.onGet(`https://api.gameserverapp.com/api/v1/shop/${id}`).reply(200, response)
 
-    const result = await client.shopItem(uuid)
+    const result = await client.shopItem(id)
     expect(result).toEqual(response)
   })
 })
