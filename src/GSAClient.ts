@@ -124,7 +124,7 @@ export default class GSAClient {
     return this.request('get', 'v1', `${fullRoute}?${queryString}`);
   }
 
-  public async shopItem(id: number) {
+  public async shopItem(id: string) {
     return this.request('get', 'v1', `shop/${id}`);
   }
 
