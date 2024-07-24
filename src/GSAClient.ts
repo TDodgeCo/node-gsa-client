@@ -47,11 +47,11 @@ export default class GSAClient {
   }
 
   public async clusterStat(uuid: string, type: string = 'online-count-last-7-days') {
-    return this.request('get', 'v1', `cluster/${uuid}/stat/${type}`)
+    return this.request('get', 'v1', `cluster/${uuid}/stats/${type}`)
   }
 
   public async serverStat(id: string, type: string = 'online-count-last-7-days') {
-    return this.request('get', 'v1', `server/${id}`)
+    return this.request('get', 'v1', `server/${id}/stats/${type}`)
   }
 
   public async servers() {
@@ -118,30 +118,41 @@ export default class GSAClient {
     return this.request('get', 'v1', 'characters/spotlight')
   }
 
-  private async request(method: 'get' | 'post' | 'delete', version: string, url: string, data: any = {}) {
-    const fullUrl = `${this.url}/${version}/${url}`
+  public async shopItems(route: string = '', query: any = {}) {
+    const queryString = new URLSearchParams(query).toString();
+    const fullRoute = route ? `shop/${route}` : 'shop';
+    return this.request('get', 'v1', `${fullRoute}?${queryString}`);
+  }
 
+  public async shopItem(id: number) {
+    return this.request('get', 'v1', `shop/${id}`);
+  }
+
+  private async request(method: 'get' | 'post' | 'delete', version: string, url: string, data: any = {}) {
+    const fullUrl = `${this.url}/${version}/${url}`;
     const config: AxiosRequestConfig = {
       method,
       url: fullUrl,
       data: method === 'post' ? data : undefined,
-    }
+    };
 
     if (this.cookieJar.getCookieStringSync(fullUrl)) {
       config.headers = {
         ...config.headers,
         Authorization: `Bearer ${this.cookieJar.getCookieStringSync(fullUrl)}`,
-      }
+      };
     }
 
+    console.log(`Requesting ${method.toUpperCase()} ${fullUrl} with data: ${JSON.stringify(data, null, 2)}`)
+
     try {
-      const response = await this.client.request(config)
-      return response.data
+      const response = await this.client.request(config);
+      return response.data;
     } catch (error: any) {
       if (error.response) {
-        throw new GSAClientException(error.response.data, error.response.status)
+        throw new GSAClientException(error.response.data, error.response.status);
       } else {
-        throw new GSAClientException(error.message)
+        throw new GSAClientException(error.message);
       }
     }
   }
