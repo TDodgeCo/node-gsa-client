@@ -279,6 +279,26 @@ const characters = await client.spotlightCharacters()
 console.log(characters)
 ```
 
+#### `shopItems(query: string)`
+
+Fetch shop items.
+
+```typescript
+const shopPacks = await client.shopItems() // returns a broad list of shop packs. Mostly collections and top level items.
+// OR
+const shopPacks = await client.shopItems('dinos') // returns a list of shop packs that match the query string
+console.log(shopPacks)
+```
+
+#### `shopItem(id: string)`
+
+Fetch a shop item by it's id.
+
+```typescript
+const shopPack = await client.shopItem('6fd21cfb-441e-4a43-824c-451ad0768318')
+console.log(shopPack)
+```
+
 
 ## License
 
