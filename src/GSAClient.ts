@@ -151,8 +151,6 @@ export default class GSAClient {
       };
     }
 
-    console.log(`Requesting ${method.toUpperCase()} ${fullUrl} with data: ${JSON.stringify(data, null, 2)}`)
-
     try {
       const response = await this.client.request(config);
       return response.data;
